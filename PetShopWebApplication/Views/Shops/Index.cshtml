@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PetShopWebApplication.Models.Shop>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Магазини</h1>
+
+<p>
+    <a asp-action="Create">Додати новий магазин</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Знайти магазини за мінімальною кількістю кліток: <input type="text" name="SearchString" value="@ViewBag.СurrentFilter" />
+            <input type="submit" value="Шукати" class="btn btn-default" /> |
+            <a asp-action="Index">Повернутися до повного списку</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adress)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Редагувати інформацію про магазин</a>|
+                    <a asp-controller="Cages" asp-action="Details" asp-route-id="@item.ID">Редагувати інформацію про клітки</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Детальніше</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Видалити</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

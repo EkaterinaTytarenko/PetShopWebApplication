@@ -1,0 +1,74 @@
+﻿@model PetShopWebApplication.Models.Animal
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Додавання</h1>
+
+<h4>Нова тварина</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sex" class="control-label"></label>
+                <select asp-for="Sex" class="form-control" asp-items="ViewBag.Sex">
+                    <option value="">-- Оберіть стать тварини --</option>
+                </select>
+                <span asp-validation-for="Sex" class="text-danger" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Shop" class="control-label"></label>
+                <select  asp-for ="ShopID" class="form-control" asp-items="ViewBag.ShopID">
+                    <option value="">-- Оберіть магазин --</option>
+                </select>
+                <span asp-validation-for="ShopID" class="text-danger" />
+ 
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Species" class="control-label"></label>
+                <select asp-for="SpeciesID" class="form-control" asp-items="ViewBag.SpeciesID">
+                    <option value="">-- Оберіть вид --</option>
+                </select>
+                <span asp-validation-for="SpeciesID" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <select asp-for="ColorID" class="form-control" asp-items="ViewBag.ColorID">
+                    <option value="">-- Оберіть колір --</option>
+                </select>
+                <span asp-validation-for="ColorID" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Додати" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Повернутися до списку тварин</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
